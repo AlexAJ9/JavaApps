@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script>
+function loadDoc() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+	console.log(this.response);
+    if (this.readyState == 4 && this.status == 200) {
+      FormView(this.response);
+    }
+  };
+  xhttp.open("GET", "Ajax", true);
+  xhttp.send();
+}
+function FormView(json) {
+  var res = JSON.parse(json);
+
+  var content = "<b>" + res.boldData + "</b><br><i>" + res.italicData + "</i><br>";
+  //content += "<img src='https://img.memesuper.com/6301fe81da7c3b87a6a2a4b198868231_wow-taco-wow-meme-doge_550-384.jpeg'>";
+  document.getElementById("target").innerHTML = content;
+}
+</script>
+
+</head>
+<body>
+Welcome to AJAX test!<br>
+<button onClick="loadDoc()"> Load Data </button>
+<div id="target"></div>
+</body>
+</html>
